@@ -21,7 +21,7 @@ const tooltipShowAnimation = {
 	},
 }
 
-const TotalSalesChart = () => {
+const TotalSalesChart = ({ className }: { className?: string }) => {
 	const data = [
 		{ name: 'Direct', value: 300.56, color: '#1f2937' },
 		{ name: 'Affiliate', value: 135.18, color: '#86efac' },
@@ -110,27 +110,8 @@ const TotalSalesChart = () => {
 	}
 
 	return (
-		<div
-			style={{
-				backgroundColor: '#f8f9fa',
-				padding: '20px',
-				borderRadius: '8px',
-				fontFamily:
-					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-				maxWidth: '300px',
-			}}
-		>
-			{/* Header */}
-			<h3
-				style={{
-					margin: '0 0 20px 0',
-					fontSize: '18px',
-					fontWeight: '600',
-					color: '#1a1a1a',
-				}}
-			>
-				Total Sales
-			</h3>
+		<div className={`bg-primary-light p-6 rounded-lg ${className}`}>
+			<div className="font-semibld">Total Sales</div>
 
 			{/* Donut Chart */}
 			<div style={{ height: '200px', marginBottom: '20px' }}>

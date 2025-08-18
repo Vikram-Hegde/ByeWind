@@ -5,7 +5,7 @@ interface Product {
 	amount: number
 }
 
-export default function SalesTable() {
+export default function SalesTable({ className }: { className?: string }) {
 	const products: Product[] = [
 		{
 			name: 'ASOS Ridley High Waist',
@@ -40,7 +40,7 @@ export default function SalesTable() {
 	]
 
 	return (
-		<div className="bg-white/50 p-4 rounded-lg">
+		<div className={`bg-primary-light p-4 rounded-lg ${className}`}>
 			<h3 className="font-semibold mb-4">Top Selling Products</h3>
 			<div className="overflow-x-auto">
 				<table className="min-w-full">

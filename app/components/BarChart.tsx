@@ -8,7 +8,7 @@ import {
 	ResponsiveContainer,
 } from 'recharts'
 
-const ProjectionsVsActualsChart = () => {
+const ProjectionsVsActualsChart = ({ className }: { className?: string }) => {
 	const data = [
 		{ month: 'Jan', projections: 20000000, actuals: 18000000 },
 		{ month: 'Feb', projections: 25000000, actuals: 22000000 },
@@ -26,8 +26,8 @@ const ProjectionsVsActualsChart = () => {
 	}
 
 	return (
-		<div className="p-6 bg-primary-light">
-			<h3 className="font-semibold">Projections vs Actuals</h3>
+		<div className={`p-6 bg-primary-light ${className}`}>
+			<h3 className="font-semibold mb-4">Projections vs Actuals</h3>
 
 			{/* Chart */}
 			<div style={{ height: '180px' }}>

@@ -65,10 +65,8 @@ export default function Dashboard() {
 				<main className="p-7 space-y-6">
 					<div className="font-semibold">eCommerce</div>
 
-					{/* Charts */}
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-						{/* Stats Cards */}
-						<div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
+					<div className="grid grid-cols-[repeat(6,1fr)] gap-4">
+						<div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] col-span-3 gap-4">
 							<StatsCard
 								label="Customers"
 								value="3,781"
@@ -96,15 +94,11 @@ export default function Dashboard() {
 								suffix="%"
 							/>
 						</div>
-						<ProjectionsVsActualsChart />
-						<RevenueChart />
-						<RevenueByLocationChart />
-						<TotalSalesChart />
-					</div>
-
-					{/* Sales Table */}
-					<div className="col-span-full">
-						<SalesTable />
+						<ProjectionsVsActualsChart className="col-span-3" />
+						<RevenueChart className="col-span-4" />
+						<RevenueByLocationChart className="col-span-2" />
+						<SalesTable className="col-span-4" />
+						<TotalSalesChart className="col-span-2" />
 					</div>
 				</main>
 			</section>

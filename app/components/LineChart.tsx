@@ -7,7 +7,7 @@ import {
 	YAxis,
 } from 'recharts'
 
-const RevenueChart = () => {
+const RevenueChart = ({ className }: { className?: string }) => {
 	const data = [
 		{ month: 'Jan', currentWeek: 14000000, previousWeek: 12000000 },
 		{ month: 'Feb', currentWeek: 18000000, previousWeek: 8000000 },
@@ -26,68 +26,25 @@ const RevenueChart = () => {
 
 	return (
 		<div
-			className="revenue-chart-container"
-			style={{
-				backgroundColor: '#f8f9fa',
-				padding: '20px',
-				borderRadius: '8px',
-				fontFamily:
-					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-			}}
+			className={`revenue-chart-container bg-primary-light p-6 rounded-md ${className}`}
 		>
-			<div style={{ marginBottom: '20px' }}>
-				<h3
-					style={{
-						margin: '0 0 16px 0',
-						fontSize: '18px',
-						fontWeight: '600',
-						color: '#1a1a1a',
-					}}
-				>
-					Revenue
-				</h3>
+			<div className="flex gap-4 mb-4 items-center">
+				<h3 className="font-semibold">Revenue</h3>
 
-				<div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-					<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-						<div
-							style={{
-								width: '8px',
-								height: '8px',
-								borderRadius: '50%',
-								backgroundColor: '#6366f1',
-							}}
-						></div>
-						<span style={{ fontSize: '14px', color: '#6b7280' }}>
-							Current Week
-						</span>
-						<span
-							style={{ fontSize: '16px', fontWeight: '600', color: '#1a1a1a' }}
-						>
-							$58,211
-						</span>
+				<div className="flex gap-6 items-center">
+					<div className="flex items-center gap-2">
+						<div className="w-2 h-2 rounded-full bg-secondary-cyan"></div>
+						<span className="text-gray-500">Current Week</span>
+						<span className="text-black text-base font-semibold">$58,211</span>
 					</div>
 
-					<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-						<div
-							style={{
-								width: '8px',
-								height: '8px',
-								borderRadius: '50%',
-								backgroundColor: '#94a3b8',
-							}}
-						></div>
-						<span style={{ fontSize: '14px', color: '#6b7280' }}>
-							Previous Week
-						</span>
-						<span
-							style={{ fontSize: '16px', fontWeight: '600', color: '#1a1a1a' }}
-						>
-							$68,768
-						</span>
+					<div className="flex items-center gap-2">
+						<div className="w-2 h-2 rounded-full bg-slate-400"></div>
+						<span className="text-sm text-gray-500">Previous Week</span>
+						<span className="text-black text-base font-semibold">$68,768</span>
 					</div>
 				</div>
 			</div>
-
 			<div style={{ height: '300px' }}>
 				<ResponsiveContainer width="100%" height="100%">
 					<LineChart
@@ -123,17 +80,19 @@ const RevenueChart = () => {
 						<Line
 							type="monotone"
 							dataKey="previousWeek"
-							stroke="#94a3b8"
+							stroke="var(--color-secondary-cyan)"
 							strokeWidth={3}
+							fill="none"
 							dot={false}
 							strokeDasharray="5 5"
 						/>
 						<Line
 							type="monotone"
 							dataKey="currentWeek"
-							stroke="#6366f1"
+							stroke="#1c1c1c"
 							strokeWidth={3}
 							dot={false}
+							fill="none"
 						/>
 					</LineChart>
 				</ResponsiveContainer>
