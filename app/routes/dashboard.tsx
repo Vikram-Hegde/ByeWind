@@ -9,12 +9,15 @@ import {
 	StarIcon,
 	SunIcon,
 } from '@phosphor-icons/react'
+import IconButton from '~/components/IconButton'
 import { Link } from 'react-router'
 import Notifications from '~/components/Notifications'
 import RevenueChart from '~/components/LineChart'
 import ProjectionsVsActualsChart from '~/components/BarChart'
 import RevenueByLocationChart from '~/components/GeoChart'
 import TotalSalesChart from '~/components/PieChart'
+import StatsCard from '~/components/StatsCard'
+import SalesTable from '~/components/SalesTable'
 
 export function meta({}: Route.MetaArgs) {
 	return [
@@ -29,12 +32,8 @@ export default function Dashboard() {
 			<Sidebar />
 			<section className="h-screen overflow-y-auto">
 				<header className="py-5 px-7 flex gap-2 border-b border-text/10 bg-white sticky top-0 z-10">
-					<button className="grid w-7 aspect-square place-items-center hover:bg-text/5 rounded-md">
-						<SidebarIcon weight="duotone" className="size-5" />
-					</button>
-					<button className="grid w-7 aspect-square place-items-center hover:bg-text/5 rounded-md">
-						<StarIcon weight="duotone" className="size-5" />
-					</button>
+					<IconButton icon={SidebarIcon} />
+					<IconButton icon={StarIcon} />
 					<div className="flex gap-1">
 						<Link to="/" className="text-text/40 hover:text-text py-1 px-2">
 							Dashboards
@@ -56,26 +55,51 @@ export default function Dashboard() {
 								<CommandIcon className="size-4" /> /
 							</div>
 						</div>
-						<button className="grid w-7 aspect-square place-items-center hover:bg-text/5 rounded-md">
-							<SunIcon weight="duotone" className="size-5" />
-						</button>
-						<button className="grid w-7 aspect-square place-items-center hover:bg-text/5 rounded-md">
-							<ClockCounterClockwiseIcon weight="duotone" className="size-5" />
-						</button>
-						<button className="grid w-7 aspect-square place-items-center hover:bg-text/5 rounded-md">
-							<BellIcon weight="duotone" className="size-5" />
-						</button>
-						<button className="grid w-7 aspect-square place-items-center hover:bg-text/5 rounded-md">
-							<SidebarIcon weight="duotone" className="size-5" />
-						</button>
+						<IconButton icon={SunIcon} />
+						<IconButton icon={ClockCounterClockwiseIcon} />
+						<IconButton icon={BellIcon} />
+						<IconButton icon={SidebarIcon} />
 					</div>
 				</header>
 
-				<main className="grid grid-cols-2">
-					<RevenueChart />
-					<ProjectionsVsActualsChart />
-					<RevenueByLocationChart />
-					<TotalSalesChart />
+				<main className="p-7 space-y-6">
+					<div className="font-semibold">eCommerce</div>
+
+					{/* Charts */}
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+						{/* Stats Cards */}
+						<div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
+							<StatsCard
+								label="Customers"
+								value="3,781"
+								change={11.01}
+								className="bg-primary-blue"
+							/>
+							<StatsCard
+								label="Orders"
+								value="1,219"
+								change={-0.03}
+								className="bg-primary-light"
+							/>
+							<StatsCard
+								label="Revenue"
+								value="695"
+								change={15.03}
+								prefix="$"
+								className="bg-primary-purple"
+							/>
+							<StatsCard label="Growth" value="30.1" change={6.08} suffix="%" />
+						</div>
+						<ProjectionsVsActualsChart />
+						<RevenueChart />
+						<RevenueByLocationChart />
+						<TotalSalesChart />
+					</div>
+
+					{/* Sales Table */}
+					<div className="col-span-full">
+						<SalesTable />
+					</div>
 				</main>
 			</section>
 			<Notifications />

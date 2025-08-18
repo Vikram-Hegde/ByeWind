@@ -19,6 +19,7 @@ button {
 	--color-text: #1c1c1c;
 	--color-primary-blue: #e3f5ff;
 	--color-primary-purple: #e5ecf6;
+	--color-primary-light: #f7f9fb;
 
 	--animate-accordion-slide-down: accordion-slide-down 200ms
 		cubic-bezier(0.4, 0, 0.2, 1);
