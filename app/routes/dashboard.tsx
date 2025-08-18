@@ -86,9 +86,15 @@ export default function Dashboard() {
 								value="695"
 								change={15.03}
 								prefix="$"
-								className="bg-primary-purple"
+								className="bg-primary-light"
 							/>
-							<StatsCard label="Growth" value="30.1" change={6.08} suffix="%" />
+							<StatsCard
+								className="bg-primary-purple"
+								label="Growth"
+								value="30.1"
+								change={6.08}
+								suffix="%"
+							/>
 						</div>
 						<ProjectionsVsActualsChart />
 						<RevenueChart />

@@ -26,76 +26,18 @@ const ProjectionsVsActualsChart = () => {
 	}
 
 	return (
-		<div
-			style={{
-				backgroundColor: '#f8f9fa',
-				padding: '20px',
-				borderRadius: '8px',
-				fontFamily:
-					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-			}}
-		>
-			{/* Header with Custom Legend */}
-			<div style={{ marginBottom: '24px' }}>
-				<div
-					style={{
-						display: 'flex',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-					}}
-				>
-					<h3
-						style={{
-							margin: '0',
-							fontSize: '18px',
-							fontWeight: '600',
-							color: '#1a1a1a',
-						}}
-					>
-						Projections vs Actuals
-					</h3>
-
-					{/* Custom Legend */}
-					<div style={{ display: 'flex', gap: '20px' }}>
-						<div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-							<div
-								style={{
-									width: '12px',
-									height: '12px',
-									backgroundColor: '#93c5fd',
-									borderRadius: '2px',
-								}}
-							></div>
-							<span style={{ fontSize: '12px', color: '#6b7280' }}>
-								Projections
-							</span>
-						</div>
-						<div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-							<div
-								style={{
-									width: '12px',
-									height: '12px',
-									backgroundColor: '#60a5fa',
-									borderRadius: '2px',
-								}}
-							></div>
-							<span style={{ fontSize: '12px', color: '#6b7280' }}>
-								Actuals
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div className="p-6 bg-primary-light">
+			<h3 className="font-semibold">Projections vs Actuals</h3>
 
 			{/* Chart */}
-			<div style={{ height: '300px' }}>
+			<div style={{ height: '180px' }}>
 				<ResponsiveContainer width="100%" height="100%">
 					<BarChart
 						data={data}
 						margin={{
 							top: 20,
-							right: 30,
-							left: 20,
+							right: 0,
+							left: 0,
 							bottom: 20,
 						}}
 					>
@@ -120,20 +62,19 @@ const ProjectionsVsActualsChart = () => {
 							domain={[0, 50000000]}
 							ticks={[0, 10000000, 20000000, 30000000, 40000000, 50000000]}
 						/>
-						{/* Stacked Bars - order matters for stacking */}
 						<Bar
 							dataKey="actuals"
 							stackId="a"
-							fill="#60a5fa"
+							className="fill-secondary-cyan"
 							radius={[0, 0, 0, 0]}
-							maxBarSize={60}
+							maxBarSize={32}
 						/>
 						<Bar
 							dataKey="projections"
 							stackId="a"
-							fill="#93c5fd"
-							radius={[2, 2, 0, 0]}
-							maxBarSize={60}
+							className="fill-secondary-cyan/50"
+							radius={[4, 4, 0, 0]}
+							maxBarSize={32}
 						/>
 					</BarChart>
 				</ResponsiveContainer>
