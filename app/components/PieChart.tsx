@@ -49,7 +49,8 @@ const TotalSalesChart = () => {
 						borderRadius: '6px',
 						fontSize: '12px',
 						fontWeight: '500',
-						boxShadow: '0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2)',
+						boxShadow:
+							'0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2)',
 						userSelect: 'none',
 						animation: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
 						willChange: 'transform, opacity',

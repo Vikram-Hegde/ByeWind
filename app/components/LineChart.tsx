@@ -1,16 +1,13 @@
-import React from 'react'
 import {
-	LineChart,
+	CartesianGrid,
 	Line,
+	LineChart,
+	ResponsiveContainer,
 	XAxis,
 	YAxis,
-	CartesianGrid,
-	ResponsiveContainer,
-	Legend,
 } from 'recharts'
 
 const RevenueChart = () => {
-	// Sample data based on your chart
 	const data = [
 		{ month: 'Jan', currentWeek: 14000000, previousWeek: 12000000 },
 		{ month: 'Feb', currentWeek: 18000000, previousWeek: 8000000 },
@@ -20,7 +17,6 @@ const RevenueChart = () => {
 		{ month: 'Jun', currentWeek: 22000000, previousWeek: 20000000 },
 	]
 
-	// Format Y-axis labels
 	const formatYAxis = (value: number): string => {
 		if (value >= 1000000) {
 			return `${value / 1000000}M`
@@ -39,7 +35,6 @@ const RevenueChart = () => {
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
 			}}
 		>
-			{/* Header */}
 			<div style={{ marginBottom: '20px' }}>
 				<h3
 					style={{
@@ -93,7 +88,6 @@ const RevenueChart = () => {
 				</div>
 			</div>
 
-			{/* Chart */}
 			<div style={{ height: '300px' }}>
 				<ResponsiveContainer width="100%" height="100%">
 					<LineChart
