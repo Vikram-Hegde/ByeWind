@@ -21,11 +21,11 @@ const RevenueChart = () => {
 	]
 
 	// Format Y-axis labels
-	const formatYAxis = (value: number) => {
+	const formatYAxis = (value: number): string => {
 		if (value >= 1000000) {
 			return `${value / 1000000}M`
 		}
-		return value
+		return value.toString()
 	}
 
 	return (
