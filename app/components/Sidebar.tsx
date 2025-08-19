@@ -21,10 +21,10 @@ export default function Sidebar() {
 		<motion.section
 			initial={{ x: -300, opacity: 0 }}
 			animate={{ x: 0, opacity: 1 }}
-			transition={{ type: "spring", stiffness: 400, damping: 30 }}
+			transition={{ type: 'spring', stiffness: 400, damping: 30 }}
 			className="border-r px-4 py-5 space-y-4 border-text/10 h-screen overflow-y-auto"
 		>
-			<motion.div 
+			<motion.div
 				className="flex items-center gap-2"
 				initial={{ y: -20, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
@@ -35,7 +35,7 @@ export default function Sidebar() {
 					className="size-6 object-cover rounded-full"
 					alt="User Avatar"
 					whileHover={{ scale: 1.1 }}
-					transition={{ type: "spring", stiffness: 400, damping: 17 }}
+					transition={{ type: 'spring', stiffness: 400, damping: 17 }}
 				/>
 				<motion.span
 					initial={{ opacity: 0 }}
@@ -46,21 +46,21 @@ export default function Sidebar() {
 				</motion.span>
 			</motion.div>
 
-			<motion.div 
+			<motion.div
 				className="flex gap-1 flex-col pb-3"
 				initial={{ y: 20, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ delay: 0.4 }}
 			>
 				<div className="flex gap-2 items-center">
-					<motion.button 
+					<motion.button
 						className="py-1 px-2 text-text/40 hover:bg-text/5 rounded-md"
 						whileHover={{ scale: 1.05 }}
 						whileTap={{ scale: 0.95 }}
 					>
 						Favorites
 					</motion.button>
-					<motion.button 
+					<motion.button
 						className="py-1 px-2 text-text/20 hover:bg-text/5 rounded-md"
 						whileHover={{ scale: 1.05 }}
 						whileTap={{ scale: 0.95 }}
@@ -68,23 +68,23 @@ export default function Sidebar() {
 						Recent
 					</motion.button>
 				</div>
-				<motion.ul 
+				<motion.ul
 					className="list-inside list-disc marker:text-text/20"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.5 }}
 				>
-					<motion.li 
+					<motion.li
 						className="px-2 py-1"
 						whileHover={{ x: 5 }}
-						transition={{ type: "spring", stiffness: 400, damping: 17 }}
+						transition={{ type: 'spring', stiffness: 400, damping: 17 }}
 					>
 						Overview
 					</motion.li>
-					<motion.li 
+					<motion.li
 						className="px-2 py-1"
 						whileHover={{ x: 5 }}
-						transition={{ type: "spring", stiffness: 400, damping: 17 }}
+						transition={{ type: 'spring', stiffness: 400, damping: 17 }}
 					>
 						Projects
 					</motion.li>
@@ -318,14 +318,14 @@ function NavItem({
 				<motion.span
 					initial={{ scale: 0.8, opacity: 0 }}
 					animate={{ scale: 1, opacity: 1 }}
-					transition={{ type: "spring", stiffness: 400, damping: 17 }}
+					transition={{ type: 'spring', stiffness: 400, damping: 17 }}
 				>
 					{icon}
 				</motion.span>
 				<motion.span
 					initial={{ x: -10, opacity: 0 }}
 					animate={{ x: 0, opacity: 1 }}
-					transition={{ type: "spring", stiffness: 400, damping: 17 }}
+					transition={{ type: 'spring', stiffness: 400, damping: 17 }}
 				>
 					{children}
 				</motion.span>
@@ -336,32 +336,26 @@ function NavItem({
 	return (
 		<Accordion.Root type="single" collapsible>
 			<Accordion.Item value="item-1" className="w-full">
-				<motion.div
-					whileHover={{ scale: 1.01 }}
-					whileTap={{ scale: 0.98 }}
-				>
+				<motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}>
 					<Accordion.Trigger
 						className={clsx(
 							'pr-2 py-1 flex gap-1 items-center w-full group hover:bg-text/5 rounded-md'
 						)}
 					>
-						<motion.span
-							animate={{ rotate: 0 }}
-							transition={{ duration: 0.2 }}
-						>
+						<motion.span animate={{ rotate: 0 }} transition={{ duration: 0.2 }}>
 							<CaretRightIcon className="size-4 text-text/40 shrink-0 ml-2 group-data-[state=open]:rotate-90" />
 						</motion.span>
 						<motion.span
 							initial={{ scale: 0.8, opacity: 0 }}
 							animate={{ scale: 1, opacity: 1 }}
-							transition={{ type: "spring", stiffness: 400, damping: 17 }}
+							transition={{ type: 'spring', stiffness: 400, damping: 17 }}
 						>
 							{icon}
 						</motion.span>
 						<motion.span
 							initial={{ x: -10, opacity: 0 }}
 							animate={{ x: 0, opacity: 1 }}
-							transition={{ type: "spring", stiffness: 400, damping: 17 }}
+							transition={{ type: 'spring', stiffness: 400, damping: 17 }}
 						>
 							{children}
 						</motion.span>
@@ -374,11 +368,11 @@ function NavItem({
 								key={item.href}
 								initial={{ x: -20, opacity: 0 }}
 								animate={{ x: 0, opacity: 1 }}
-								transition={{ 
-									type: "spring",
+								transition={{
+									type: 'spring',
 									stiffness: 400,
 									damping: 17,
-									delay: index * 0.05
+									delay: index * 0.05,
 								}}
 							>
 								<Link

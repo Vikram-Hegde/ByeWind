@@ -29,17 +29,17 @@ const RevenueChart = ({ className }: { className?: string }) => {
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
-			transition={{ type: "spring", duration: 0.8 }}
+			transition={{ type: 'spring', duration: 0.8 }}
 			whileHover={{ scale: 1.01 }}
 			className={`revenue-chart-container bg-primary-light p-6 rounded-lg ${className}`}
 		>
-			<motion.div 
+			<motion.div
 				className="flex gap-4 mb-4 items-center"
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.2 }}
 			>
-				<motion.h3 
+				<motion.h3
 					className="font-semibold"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -48,17 +48,17 @@ const RevenueChart = ({ className }: { className?: string }) => {
 					Revenue
 				</motion.h3>
 
-				<motion.div 
+				<motion.div
 					className="flex gap-6 items-center"
 					initial={{ opacity: 0, x: 20 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.4 }}
 				>
-					<motion.div 
+					<motion.div
 						className="flex items-center gap-2"
 						whileHover={{ scale: 1.05 }}
 					>
-						<motion.div 
+						<motion.div
 							className="w-2 h-2 rounded-full bg-secondary-cyan"
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
@@ -68,11 +68,11 @@ const RevenueChart = ({ className }: { className?: string }) => {
 						<span className="text-black text-base font-semibold">$58,211</span>
 					</motion.div>
 
-					<motion.div 
+					<motion.div
 						className="flex items-center gap-2"
 						whileHover={{ scale: 1.05 }}
 					>
-						<motion.div 
+						<motion.div
 							className="w-2 h-2 rounded-full bg-slate-400"
 							initial={{ scale: 0 }}
 							animate={{ scale: 1 }}
@@ -83,7 +83,7 @@ const RevenueChart = ({ className }: { className?: string }) => {
 					</motion.div>
 				</motion.div>
 			</motion.div>
-			<motion.div 
+			<motion.div
 				style={{ height: '300px' }}
 				initial={{ opacity: 0, scale: 0.95 }}
 				animate={{ opacity: 1, scale: 1 }}

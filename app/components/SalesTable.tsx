@@ -42,14 +42,14 @@ export default function SalesTable({ className }: { className?: string }) {
 	]
 
 	return (
-		<motion.div 
+		<motion.div
 			className={`bg-primary-light p-4 rounded-lg ${className}`}
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
 			whileHover={{ scale: 1.01 }}
 		>
-			<motion.h3 
+			<motion.h3
 				className="font-semibold mb-4"
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
@@ -57,7 +57,7 @@ export default function SalesTable({ className }: { className?: string }) {
 			>
 				Top Selling Products
 			</motion.h3>
-			<motion.div 
+			<motion.div
 				className="overflow-x-auto"
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
@@ -65,7 +65,7 @@ export default function SalesTable({ className }: { className?: string }) {
 			>
 				<table className="min-w-full">
 					<thead>
-						<motion.tr 
+						<motion.tr
 							className="text-text/60"
 							initial={{ opacity: 0, y: -10 }}
 							animate={{ opacity: 1, y: 0 }}
@@ -79,20 +79,20 @@ export default function SalesTable({ className }: { className?: string }) {
 					</thead>
 					<tbody>
 						{products.map((product, index) => (
-							<motion.tr 
-								key={index} 
+							<motion.tr
+								key={index}
 								className="border-t border-text/10"
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
-								transition={{ 
+								transition={{
 									delay: 0.5 + index * 0.1,
-									type: "spring",
+									type: 'spring',
 									stiffness: 100,
-									damping: 10
+									damping: 10,
 								}}
-								whileHover={{ 
+								whileHover={{
 									scale: 1.01,
-									backgroundColor: "rgba(255, 255, 255, 0.05)" 
+									backgroundColor: 'rgba(255, 255, 255, 0.05)',
 								}}
 							>
 								<td className="py-2 px-4">{product.name}</td>
