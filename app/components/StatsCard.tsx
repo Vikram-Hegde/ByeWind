@@ -1,4 +1,7 @@
-import { ArrowUpRight, ArrowDownRight } from '@phosphor-icons/react'
+import {
+	ArrowDownRightIcon,
+	ArrowUpRightIcon
+} from '@phosphor-icons/react'
 
 interface StatsCardProps {
 	label: string
@@ -18,6 +21,7 @@ export default function StatsCard({
 	className,
 }: StatsCardProps) {
 	const isPositive = change >= 0
+
 	return (
 		<div className={`p-6 rounded-lg ${className}`}>
 			<div className="font-semibold">{label}</div>
@@ -28,11 +32,11 @@ export default function StatsCard({
 					{suffix && <span className="text-text/60">{suffix}</span>}
 				</div>
 				<div className="flex items-center gap-1">
-					<div className="text-text">
+					<div>
 						{isPositive ? (
-							<ArrowUpRight weight="bold" />
+							<ArrowUpRightIcon weight="bold" />
 						) : (
-							<ArrowDownRight weight="bold" />
+							<ArrowDownRightIcon weight="bold" />
 						)}
 					</div>
 					<span className="text-text/60">{Math.abs(change)}%</span>

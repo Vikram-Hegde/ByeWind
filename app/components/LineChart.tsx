@@ -26,7 +26,7 @@ const RevenueChart = ({ className }: { className?: string }) => {
 
 	return (
 		<div
-			className={`revenue-chart-container bg-primary-light p-6 rounded-md ${className}`}
+			className={`revenue-chart-container bg-primary-light p-6 rounded-lg ${className}`}
 		>
 			<div className="flex gap-4 mb-4 items-center">
 				<h3 className="font-semibold">Revenue</h3>

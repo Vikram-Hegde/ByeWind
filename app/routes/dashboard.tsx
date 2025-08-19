@@ -8,8 +8,16 @@ import {
 	SidebarIcon,
 	StarIcon,
 	SunIcon,
+	MoonIcon,
 } from '@phosphor-icons/react'
 import IconButton from '~/components/IconButton'
+import { useEffect, useState } from 'react'
+import {
+	type Theme,
+	initializeTheme,
+	toggleTheme,
+	applyTheme,
+} from '~/utils/theme'
 import { Link } from 'react-router'
 import Notifications from '~/components/Notifications'
 import RevenueChart from '~/components/LineChart'
@@ -27,11 +35,23 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Dashboard() {
+	const [theme, setTheme] = useState<Theme>('light')
+
+	useEffect(() => {
+		setTheme(initializeTheme())
+	}, [])
+
+	const handleThemeToggle = () => {
+		const newTheme = toggleTheme(theme)
+		setTheme(newTheme)
+		applyTheme(newTheme)
+	}
+
 	return (
-		<div className="min-h-screen text-sm grid grid-cols-[212px_1fr_280px] text-text">
+		<div className="min-h-screen text-sm grid grid-cols-[212px_1fr_280px] text-text bg-white dark:bg-[#111] dark:text-white">
 			<Sidebar />
 			<section className="h-screen overflow-y-auto">
-				<header className="py-5 px-7 flex gap-2 border-b border-text/10 bg-white sticky top-0 z-10">
+				<header className="py-5 px-7 flex gap-2 border-b border-text/10 bg-white dark:bg-[#111] sticky top-0 z-10">
 					<IconButton icon={SidebarIcon} />
 					<IconButton icon={StarIcon} />
 					<div className="flex gap-1">
@@ -55,7 +75,10 @@ export default function Dashboard() {
 								<CommandIcon className="size-4" /> /
 							</div>
 						</div>
-						<IconButton icon={SunIcon} />
+						<IconButton
+							icon={theme === 'light' ? SunIcon : MoonIcon}
+							onClick={handleThemeToggle}
+						/>
 						<IconButton icon={ClockCounterClockwiseIcon} />
 						<IconButton icon={BellIcon} />
 						<IconButton icon={SidebarIcon} />
@@ -71,7 +94,7 @@ export default function Dashboard() {
 								label="Customers"
 								value="3,781"
 								change={11.01}
-								className="bg-primary-blue"
+								className="bg-primary-blue dark:text-text-inverse dark-text"
 							/>
 							<StatsCard
 								label="Orders"
@@ -87,7 +110,7 @@ export default function Dashboard() {
 								className="bg-primary-light"
 							/>
 							<StatsCard
-								className="bg-primary-purple"
+								className="bg-primary-purple dark:text-text-inverse dark-text"
 								label="Growth"
 								value="30.1"
 								change={6.08}

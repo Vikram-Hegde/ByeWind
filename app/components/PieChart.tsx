@@ -42,11 +42,11 @@ const TotalSalesChart = ({ className }: { className?: string }) => {
 			const data = payload[0].payload as DataItem
 			return (
 				<div
+					className="rounded-lg"
 					style={{
 						backgroundColor: '#1f2937',
 						color: 'white',
 						padding: '8px 12px',
-						borderRadius: '6px',
 						fontSize: '12px',
 						fontWeight: '500',
 						boxShadow:

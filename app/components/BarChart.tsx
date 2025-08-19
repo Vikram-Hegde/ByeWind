@@ -26,7 +26,7 @@ const ProjectionsVsActualsChart = ({ className }: { className?: string }) => {
 	}
 
 	return (
-		<div className={`p-6 bg-primary-light ${className}`}>
+		<div className={`p-6 rounded-lg bg-primary-light ${className}`}>
 			<h3 className="font-semibold mb-4">Projections vs Actuals</h3>
 
 			{/* Chart */}
