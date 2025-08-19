@@ -7,8 +7,6 @@ import {
 	MagnifyingGlassIcon,
 	SidebarIcon,
 	StarIcon,
-	SunIcon,
-	MoonIcon,
 } from '@phosphor-icons/react'
 import IconButton from '~/components/IconButton'
 import { useEffect, useState } from 'react'
@@ -27,6 +25,7 @@ import TotalSalesChart from '~/components/PieChart'
 import StatsCard from '~/components/StatsCard'
 import SalesTable from '~/components/SalesTable'
 import clsx from 'clsx'
+import { ThemeToggle } from '~/components/ThemeToggle'
 
 export function meta({}: Route.MetaArgs) {
 	return [
@@ -61,7 +60,7 @@ export default function Dashboard() {
 	return (
 		<div
 			className={clsx(
-				'min-h-screen text-sm grid text-text bg-white dark:bg-[#111] dark:text-white transition-all duration-300',
+				'min-h-screen text-sm grid text-text bg-white dark:bg-[#111] dark:text-white transition-[grid-template-columns] duration-300',
 				isSidebarOpen && isRightSidebarOpen
 					? 'grid-cols-[212px_1fr_280px]'
 					: !isSidebarOpen && isRightSidebarOpen
@@ -97,10 +96,7 @@ export default function Dashboard() {
 								<CommandIcon className="size-4" /> /
 							</div>
 						</div>
-						<IconButton
-							icon={theme === 'light' ? SunIcon : MoonIcon}
-							onClick={handleThemeToggle}
-						/>
+						<ThemeToggle theme={theme} onToggle={handleThemeToggle} />
 						<IconButton icon={ClockCounterClockwiseIcon} />
 						<IconButton icon={BellIcon} />
 						<IconButton icon={SidebarIcon} onClick={toggleRightSidebar} />
