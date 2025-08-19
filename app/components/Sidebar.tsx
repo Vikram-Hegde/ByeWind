@@ -14,33 +14,82 @@ import * as Accordion from '@radix-ui/react-accordion'
 import clsx from 'clsx'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Sidebar() {
 	return (
-		<section className="border-r px-4 py-5 space-y-4 border-text/10 h-screen overflow-y-auto">
-			<div className="flex items-center gap-2">
-				<img
+		<motion.section
+			initial={{ x: -300, opacity: 0 }}
+			animate={{ x: 0, opacity: 1 }}
+			transition={{ type: "spring", stiffness: 400, damping: 30 }}
+			className="border-r px-4 py-5 space-y-4 border-text/10 h-screen overflow-y-auto"
+		>
+			<motion.div 
+				className="flex items-center gap-2"
+				initial={{ y: -20, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ delay: 0.2 }}
+			>
+				<motion.img
 					src="https://i.pravatar.cc/48"
 					className="size-6 object-cover rounded-full"
 					alt="User Avatar"
+					whileHover={{ scale: 1.1 }}
+					transition={{ type: "spring", stiffness: 400, damping: 17 }}
 				/>
-				ByeWind
-			</div>
+				<motion.span
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ delay: 0.3 }}
+				>
+					ByeWind
+				</motion.span>
+			</motion.div>
 
-			<div className="flex gap-1 flex-col pb-3">
+			<motion.div 
+				className="flex gap-1 flex-col pb-3"
+				initial={{ y: 20, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ delay: 0.4 }}
+			>
 				<div className="flex gap-2 items-center">
-					<button className="py-1 px-2 text-text/40 hover:bg-text/5 rounded-md">
+					<motion.button 
+						className="py-1 px-2 text-text/40 hover:bg-text/5 rounded-md"
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+					>
 						Favorites
-					</button>
-					<button className="py-1 px-2 text-text/20 hover:bg-text/5 rounded-md">
+					</motion.button>
+					<motion.button 
+						className="py-1 px-2 text-text/20 hover:bg-text/5 rounded-md"
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+					>
 						Recent
-					</button>
+					</motion.button>
 				</div>
-				<ul className="list-inside list-disc marker:text-text/20">
-					<li className="px-2 py-1">Overview</li>
-					<li className="px-2 py-1">Projects</li>
-				</ul>
-			</div>
+				<motion.ul 
+					className="list-inside list-disc marker:text-text/20"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ delay: 0.5 }}
+				>
+					<motion.li 
+						className="px-2 py-1"
+						whileHover={{ x: 5 }}
+						transition={{ type: "spring", stiffness: 400, damping: 17 }}
+					>
+						Overview
+					</motion.li>
+					<motion.li 
+						className="px-2 py-1"
+						whileHover={{ x: 5 }}
+						transition={{ type: "spring", stiffness: 400, damping: 17 }}
+					>
+						Projects
+					</motion.li>
+				</motion.ul>
+			</motion.div>
 
 			<div className="flex gap-1 flex-col">
 				<div className="py-1 px-3 text-text/40">Dashboards</div>
@@ -232,7 +281,7 @@ export default function Sidebar() {
 					Social
 				</NavItem>
 			</div>
-		</section>
+		</motion.section>
 	)
 }
 
@@ -249,52 +298,101 @@ function NavItem({
 }) {
 	if (!subitems) {
 		return (
-			<button
+			<motion.button
+				whileHover={{ scale: 1.01 }}
+				whileTap={{ scale: 0.98 }}
 				className={clsx(
 					'pr-2 py-1 flex gap-1 items-center w-full group hover:bg-text/5 rounded-md',
 					isActive ? 'bg-text/5' : 'bg-transparent'
 				)}
 			>
-				<span
+				<motion.span
 					className={clsx(
 						'w-6 flex justify-between items-center',
 						isActive &&
 							'before:w-1 before:block before:content-[""] before:rounded-full before:h-4 before:bg-text'
 					)}
+					animate={isActive ? { opacity: 1 } : { opacity: 0 }}
+					transition={{ duration: 0.2 }}
 				/>
-				{icon}
-				{children}
-			</button>
+				<motion.span
+					initial={{ scale: 0.8, opacity: 0 }}
+					animate={{ scale: 1, opacity: 1 }}
+					transition={{ type: "spring", stiffness: 400, damping: 17 }}
+				>
+					{icon}
+				</motion.span>
+				<motion.span
+					initial={{ x: -10, opacity: 0 }}
+					animate={{ x: 0, opacity: 1 }}
+					transition={{ type: "spring", stiffness: 400, damping: 17 }}
+				>
+					{children}
+				</motion.span>
+			</motion.button>
 		)
 	}
 
 	return (
 		<Accordion.Root type="single" collapsible>
 			<Accordion.Item value="item-1" className="w-full">
-				<Accordion.Trigger
-					className={clsx(
-						'pr-2 py-1 flex gap-1 items-center w-full group hover:bg-text/5 rounded-md'
-					)}
+				<motion.div
+					whileHover={{ scale: 1.01 }}
+					whileTap={{ scale: 0.98 }}
 				>
-					<CaretRightIcon className="size-4 text-text/40 transition-transform shrink-0 ml-2 group-data-[state=open]:rotate-90" />
-					{icon}
-					<span>{children}</span>
-				</Accordion.Trigger>
-				<Accordion.Content className="flex flex-col gap-1 mt-1 will-change-[height] data-[state=open]:animate-accordion-slide-down data-[state=closed]:animate-accordion-slide-up">
-					{subitems.map((item) => (
-						<Link
-							key={item.href}
-							to={item.href}
-							className="pr-2 py-1 flex gap-1 items-center w-full group hover:bg-text/5 rounded-md"
+					<Accordion.Trigger
+						className={clsx(
+							'pr-2 py-1 flex gap-1 items-center w-full group hover:bg-text/5 rounded-md'
+						)}
+					>
+						<motion.span
+							animate={{ rotate: 0 }}
+							transition={{ duration: 0.2 }}
 						>
-							{/* active indicator */}
-							<span className="w-6 flex justify-between items-center"></span>
-							{/* icon */}
-							<span className="w-5"></span>
-							<span>{item.label}</span>
-						</Link>
-					))}
-				</Accordion.Content>
+							<CaretRightIcon className="size-4 text-text/40 shrink-0 ml-2 group-data-[state=open]:rotate-90" />
+						</motion.span>
+						<motion.span
+							initial={{ scale: 0.8, opacity: 0 }}
+							animate={{ scale: 1, opacity: 1 }}
+							transition={{ type: "spring", stiffness: 400, damping: 17 }}
+						>
+							{icon}
+						</motion.span>
+						<motion.span
+							initial={{ x: -10, opacity: 0 }}
+							animate={{ x: 0, opacity: 1 }}
+							transition={{ type: "spring", stiffness: 400, damping: 17 }}
+						>
+							{children}
+						</motion.span>
+					</Accordion.Trigger>
+				</motion.div>
+				<AnimatePresence>
+					<Accordion.Content className="flex flex-col gap-1 mt-1">
+						{subitems.map((item, index) => (
+							<motion.div
+								key={item.href}
+								initial={{ x: -20, opacity: 0 }}
+								animate={{ x: 0, opacity: 1 }}
+								transition={{ 
+									type: "spring",
+									stiffness: 400,
+									damping: 17,
+									delay: index * 0.05
+								}}
+							>
+								<Link
+									to={item.href}
+									className="pr-2 py-1 flex gap-1 items-center w-full group hover:bg-text/5 rounded-md"
+								>
+									<span className="w-6 flex justify-between items-center"></span>
+									<span className="w-5"></span>
+									<span>{item.label}</span>
+								</Link>
+							</motion.div>
+						))}
+					</Accordion.Content>
+				</AnimatePresence>
 			</Accordion.Item>
 		</Accordion.Root>
 	)

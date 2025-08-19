@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 interface Product {
 	name: string
 	price: number
@@ -40,30 +42,68 @@ export default function SalesTable({ className }: { className?: string }) {
 	]
 
 	return (
-		<div className={`bg-primary-light p-4 rounded-lg ${className}`}>
-			<h3 className="font-semibold mb-4">Top Selling Products</h3>
-			<div className="overflow-x-auto">
+		<motion.div 
+			className={`bg-primary-light p-4 rounded-lg ${className}`}
+			initial={{ opacity: 0, y: 20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.5 }}
+			whileHover={{ scale: 1.01 }}
+		>
+			<motion.h3 
+				className="font-semibold mb-4"
+				initial={{ opacity: 0, x: -20 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ delay: 0.2 }}
+			>
+				Top Selling Products
+			</motion.h3>
+			<motion.div 
+				className="overflow-x-auto"
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ delay: 0.3 }}
+			>
 				<table className="min-w-full">
 					<thead>
-						<tr className="text-text/60">
+						<motion.tr 
+							className="text-text/60"
+							initial={{ opacity: 0, y: -10 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ delay: 0.4 }}
+						>
 							<th className="text-left py-2 px-4">Name</th>
 							<th className="text-left py-2 px-4">Price</th>
 							<th className="text-left py-2 px-4">Quantity</th>
 							<th className="text-left py-2 px-4">Amount</th>
-						</tr>
+						</motion.tr>
 					</thead>
 					<tbody>
 						{products.map((product, index) => (
-							<tr key={index} className="border-t border-text/10">
+							<motion.tr 
+								key={index} 
+								className="border-t border-text/10"
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ 
+									delay: 0.5 + index * 0.1,
+									type: "spring",
+									stiffness: 100,
+									damping: 10
+								}}
+								whileHover={{ 
+									scale: 1.01,
+									backgroundColor: "rgba(255, 255, 255, 0.05)" 
+								}}
+							>
 								<td className="py-2 px-4">{product.name}</td>
 								<td className="py-2 px-4">${product.price.toFixed(2)}</td>
 								<td className="py-2 px-4">{product.quantity}</td>
 								<td className="py-2 px-4">${product.amount.toFixed(2)}</td>
-							</tr>
+							</motion.tr>
 						))}
 					</tbody>
 				</table>
-			</div>
-		</div>
+			</motion.div>
+		</motion.div>
 	)
 }

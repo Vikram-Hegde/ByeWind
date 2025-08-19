@@ -6,6 +6,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts'
+import { motion } from 'framer-motion'
 
 const RevenueChart = ({ className }: { className?: string }) => {
 	const data = [
@@ -25,27 +26,69 @@ const RevenueChart = ({ className }: { className?: string }) => {
 	}
 
 	return (
-		<div
+		<motion.div
+			initial={{ opacity: 0, y: 20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ type: "spring", duration: 0.8 }}
+			whileHover={{ scale: 1.01 }}
 			className={`revenue-chart-container bg-primary-light p-6 rounded-lg ${className}`}
 		>
-			<div className="flex gap-4 mb-4 items-center">
-				<h3 className="font-semibold">Revenue</h3>
+			<motion.div 
+				className="flex gap-4 mb-4 items-center"
+				initial={{ opacity: 0, x: -20 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ delay: 0.2 }}
+			>
+				<motion.h3 
+					className="font-semibold"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ delay: 0.3 }}
+				>
+					Revenue
+				</motion.h3>
 
-				<div className="flex gap-6 items-center">
-					<div className="flex items-center gap-2">
-						<div className="w-2 h-2 rounded-full bg-secondary-cyan"></div>
+				<motion.div 
+					className="flex gap-6 items-center"
+					initial={{ opacity: 0, x: 20 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ delay: 0.4 }}
+				>
+					<motion.div 
+						className="flex items-center gap-2"
+						whileHover={{ scale: 1.05 }}
+					>
+						<motion.div 
+							className="w-2 h-2 rounded-full bg-secondary-cyan"
+							initial={{ scale: 0 }}
+							animate={{ scale: 1 }}
+							transition={{ delay: 0.5 }}
+						></motion.div>
 						<span className="text-gray-500">Current Week</span>
 						<span className="text-black text-base font-semibold">$58,211</span>
-					</div>
+					</motion.div>
 
-					<div className="flex items-center gap-2">
-						<div className="w-2 h-2 rounded-full bg-slate-400"></div>
+					<motion.div 
+						className="flex items-center gap-2"
+						whileHover={{ scale: 1.05 }}
+					>
+						<motion.div 
+							className="w-2 h-2 rounded-full bg-slate-400"
+							initial={{ scale: 0 }}
+							animate={{ scale: 1 }}
+							transition={{ delay: 0.6 }}
+						></motion.div>
 						<span className="text-sm text-gray-500">Previous Week</span>
 						<span className="text-black text-base font-semibold">$68,768</span>
-					</div>
-				</div>
-			</div>
-			<div style={{ height: '300px' }}>
+					</motion.div>
+				</motion.div>
+			</motion.div>
+			<motion.div 
+				style={{ height: '300px' }}
+				initial={{ opacity: 0, scale: 0.95 }}
+				animate={{ opacity: 1, scale: 1 }}
+				transition={{ delay: 0.7, duration: 0.5 }}
+			>
 				<ResponsiveContainer width="100%" height="100%">
 					<LineChart
 						data={data}
@@ -85,6 +128,7 @@ const RevenueChart = ({ className }: { className?: string }) => {
 							fill="none"
 							dot={false}
 							strokeDasharray="5 5"
+							animationDuration={2000}
 						/>
 						<Line
 							type="monotone"
@@ -93,11 +137,13 @@ const RevenueChart = ({ className }: { className?: string }) => {
 							strokeWidth={3}
 							dot={false}
 							fill="none"
+							animationDuration={2000}
+							animationBegin={300}
 						/>
 					</LineChart>
 				</ResponsiveContainer>
-			</div>
-		</div>
+			</motion.div>
+		</motion.div>
 	)
 }
 
