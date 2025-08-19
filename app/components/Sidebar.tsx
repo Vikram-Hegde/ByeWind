@@ -16,11 +16,19 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router'
 import { motion, AnimatePresence } from 'framer-motion'
 
-export default function Sidebar() {
+interface SidebarProps {
+	isOpen: boolean
+}
+
+export default function Sidebar({ isOpen }: SidebarProps) {
 	return (
 		<motion.section
 			initial={{ x: -300, opacity: 0 }}
-			animate={{ x: 0, opacity: 1 }}
+			animate={{
+				x: isOpen ? 0 : -300,
+				width: isOpen ? 'auto' : '0',
+				opacity: isOpen ? 1 : 0,
+			}}
 			transition={{ type: 'spring', stiffness: 400, damping: 30 }}
 			className="border-r px-4 py-5 space-y-4 border-text/10 h-screen overflow-y-auto"
 		>

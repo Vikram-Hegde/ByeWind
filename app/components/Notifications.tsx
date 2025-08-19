@@ -1,9 +1,23 @@
 import { BugIcon, UserIcon } from '@phosphor-icons/react'
 import type { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 
-export default function Notifications() {
+interface NotificationsProps {
+	isOpen: boolean
+}
+
+export default function Notifications({ isOpen }: NotificationsProps) {
 	return (
-		<section className="space-y-6 border-l border-text/10 h-screen overflow-y-auto p-5">
+		<motion.section
+			initial={{ x: 300, opacity: 0 }}
+			animate={{
+				x: isOpen ? 0 : 300,
+				width: isOpen ? 'auto' : '0',
+				opacity: isOpen ? 1 : 0,
+			}}
+			transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+			className="space-y-6 border-l border-text/10 h-screen overflow-y-auto p-5"
+		>
 			<div className="space-y-2">
 				<h3 className="py-2 px-1 font-semibold">Notifications</h3>
 				<NotificationItem
@@ -59,7 +73,7 @@ export default function Notifications() {
 					}
 				/>
 			</div>
-		</section>
+		</motion.section>
 	)
 }
 

@@ -26,6 +26,7 @@ import RevenueByLocationChart from '~/components/GeoChart'
 import TotalSalesChart from '~/components/PieChart'
 import StatsCard from '~/components/StatsCard'
 import SalesTable from '~/components/SalesTable'
+import clsx from 'clsx'
 
 export function meta({}: Route.MetaArgs) {
 	return [
@@ -36,6 +37,8 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Dashboard() {
 	const [theme, setTheme] = useState<Theme>('light')
+	const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+	const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(true)
 
 	useEffect(() => {
 		setTheme(initializeTheme())
@@ -47,12 +50,31 @@ export default function Dashboard() {
 		applyTheme(newTheme)
 	}
 
+	const toggleLeftSidebar = () => {
+		setIsSidebarOpen(!isSidebarOpen)
+	}
+
+	const toggleRightSidebar = () => {
+		setIsRightSidebarOpen(!isRightSidebarOpen)
+	}
+
 	return (
-		<div className="min-h-screen text-sm grid grid-cols-[212px_1fr_280px] text-text bg-white dark:bg-[#111] dark:text-white">
-			<Sidebar />
+		<div
+			className={clsx(
+				'min-h-screen text-sm grid text-text bg-white dark:bg-[#111] dark:text-white transition-all duration-300',
+				isSidebarOpen && isRightSidebarOpen
+					? 'grid-cols-[212px_1fr_280px]'
+					: !isSidebarOpen && isRightSidebarOpen
+					? 'grid-cols-[0_1fr_280px]'
+					: isSidebarOpen && !isRightSidebarOpen
+					? 'grid-cols-[212px_1fr_0]'
+					: 'grid-cols-[0_1fr_0]'
+			)}
+		>
+			<Sidebar isOpen={isSidebarOpen} />
 			<section className="h-screen overflow-y-auto">
 				<header className="py-5 px-7 flex gap-2 border-b border-text/10 bg-white dark:bg-[#111] sticky top-0 z-10">
-					<IconButton icon={SidebarIcon} />
+					<IconButton icon={SidebarIcon} onClick={toggleLeftSidebar} />
 					<IconButton icon={StarIcon} />
 					<div className="flex gap-1">
 						<Link to="/" className="text-text/40 hover:text-text py-1 px-2">
@@ -81,7 +103,7 @@ export default function Dashboard() {
 						/>
 						<IconButton icon={ClockCounterClockwiseIcon} />
 						<IconButton icon={BellIcon} />
-						<IconButton icon={SidebarIcon} />
+						<IconButton icon={SidebarIcon} onClick={toggleRightSidebar} />
 					</div>
 				</header>
 
@@ -125,7 +147,7 @@ export default function Dashboard() {
 					</div>
 				</main>
 			</section>
-			<Notifications />
+			<Notifications isOpen={isRightSidebarOpen} />
 		</div>
 	)
 }
